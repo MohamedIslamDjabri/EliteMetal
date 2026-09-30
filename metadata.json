@@ -1,0 +1,6 @@
+{
+  "name": "EliteMetal Roofing",
+  "description": "Architectural and premium metal roofing systems engineered for durability, efficiency, and timeless aesthetics.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
