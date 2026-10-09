@@ -110,8 +110,7 @@ export const SITE_CONFIG = {
   hours: "Mon–Sat: 8:00 AM – 6:00 PM",
   primaryCta: "Request a Quote",
   secondaryCta: "Talk to a Roofing Specialist",
-  logoUrl:
-    "https://lh3.googleusercontent.com/aida/AEtjO1XrOWA2i2YiJh38xP843wrmqTDzXuMy9wMy3SW0eHww1oGyAVoow_f3uvgbYOi3XlWU5oJKCAQwpWC1aFlvz_UiRl_Ewk43kN0yQY4ZNE305X9RflhUsaZT4ZFSy9mE-XPGE9dDQN7eFcp6O1l101adJsCrRutY9EZ6X03mafz4O42YtA9pZ-ByjAp0kwpVHbvZhXmKryMvq1BMU0r8R9Gx3M10rFYVP2q8yyqB4Izj7aV87wMARjE4lzM",
+  logoUrl: "/images/logo.svg",
   certifications:
     "ASTM Certified • Class 4 Hail Impact • 140mph+ Wind Resistance • Energy Star Partner • 50-Year Non-Prorated Warranty",
 };

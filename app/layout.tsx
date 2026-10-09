@@ -59,7 +59,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`dark ${playfair.variable} ${manrope.variable}`}>
-      <body className="bg-background text-on-surface antialiased selection:bg-tertiary-container selection:text-tertiary min-h-screen flex flex-col font-sans">
+      <body className="bg-background text-on-surface antialiased selection:bg-tertiary-container selection:text-tertiary min-h-screen flex flex-col font-sans overflow-x-hidden">
         <AiAssistantProvider>
           <Header />
           <main className="flex-1 w-full pt-20 bg-background">{children}</main>

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { SITE_CONFIG, NAV_ITEMS } from '@/constants/data';
+import BrandLogo from '@/components/common/BrandLogo';
 
 export default function Footer() {
   const servicesList = [
@@ -22,14 +22,7 @@ export default function Footer() {
             <div className="space-y-4">
               <Link href="/" className="flex items-center gap-3">
                 <div className="relative h-8 w-8 flex items-center justify-center">
-                  <Image
-                    src={SITE_CONFIG.logoUrl}
-                    alt={`${SITE_CONFIG.name} Brand Logo`}
-                    width={32}
-                    height={32}
-                    className="h-8 w-auto object-contain"
-                    referrerPolicy="no-referrer"
-                  />
+                  <BrandLogo className="h-8 w-auto object-contain" size={32} />
                 </div>
                 <span className="font-headline-md text-xl sm:text-2xl text-on-surface font-normal">
                   {SITE_CONFIG.name}
