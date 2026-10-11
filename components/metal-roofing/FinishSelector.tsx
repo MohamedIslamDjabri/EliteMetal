@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { COLOR_FINISHES } from '@/constants/data';
 
 export default function FinishSelector() {
@@ -11,10 +12,17 @@ export default function FinishSelector() {
       {/* Live Selected Finish Preview */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-10 pb-8 border-b border-white/5">
         <div className="lg:col-span-5 flex items-center gap-6">
-          <div
-            className="w-20 h-20 sm:w-24 sm:h-24 shadow-2xl transition-all duration-300 border border-white/20 shrink-0"
-            style={{ backgroundColor: activeFinish.hex }}
-          ></div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeFinish.hex}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="w-20 h-20 sm:w-24 sm:h-24 shadow-2xl border border-white/20 shrink-0"
+              style={{ backgroundColor: activeFinish.hex }}
+            />
+          </AnimatePresence>
           <div>
             <span className="font-label-caps text-[10px] text-tertiary uppercase tracking-wider block">
               {activeFinish.code}
@@ -51,11 +59,13 @@ export default function FinishSelector() {
         {COLOR_FINISHES.map((color) => {
           const isSelected = activeFinish.name === color.name;
           return (
-            <button
+            <motion.button
               key={color.name}
               type="button"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.96 }}
               onClick={() => setActiveFinish(color)}
-              className={`text-left p-3 transition-all border ${
+              className={`text-left p-3 transition-colors border relative ${
                 isSelected
                   ? 'bg-surface-container border-tertiary shadow-sm'
                   : 'bg-surface-container-high border-transparent hover:bg-surface-bright'
@@ -64,14 +74,21 @@ export default function FinishSelector() {
               <div
                 className="w-full h-14 sm:h-16 mb-2.5 shadow-inner border border-white/10"
                 style={{ backgroundColor: color.hex }}
-              ></div>
+              />
               <span className="block font-label-md text-xs text-on-surface truncate">
                 {color.name}
               </span>
               <span className="block font-body-sm text-[10px] text-outline truncate mt-0.5">
                 {color.type.split(' ')[0]}
               </span>
-            </button>
+              {isSelected && (
+                <motion.div
+                  layoutId="activeIndicator"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-tertiary"
+                  transition={{ type: 'spring', stiffness: 350, damping: 30 }}
+                />
+              )}
+            </motion.button>
           );
         })}
       </div>

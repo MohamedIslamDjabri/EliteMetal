@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Sliders, ShieldCheck, Check, Sparkles, ArrowRight } from 'lucide-react';
 import { COLOR_FINISHES } from '@/constants/data';
 
@@ -216,19 +217,33 @@ export default function MaterialConfigurator() {
               {/* Dynamic Selected Summary Header */}
               <div className="p-5 bg-surface-container-lowest border border-white/5 mb-6">
                 <div className="flex items-center gap-4">
-                  <div
-                    className="w-12 h-12 shadow-lg border border-white/20 flex items-center justify-center shrink-0 transition-colors duration-300"
+                  <motion.div
+                    key={config.colorHex}
+                    initial={{ scale: 0.88, opacity: 0.7 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.25 }}
+                    className="w-12 h-12 shadow-lg border border-white/20 flex items-center justify-center shrink-0"
                     style={{ backgroundColor: config.colorHex }}
                   >
                     <Sparkles className="w-4 h-4 text-white/60" />
-                  </div>
+                  </motion.div>
                   <div>
-                    <p className="font-headline-md text-xl text-on-surface font-normal">
-                      {config.finish}
-                    </p>
-                    <p className="font-body-sm text-xs text-outline mt-0.5">
-                      {config.metal} • {config.profile}
-                    </p>
+                    <AnimatePresence mode="wait">
+                      <motion.div
+                        key={`${config.finish}-${config.metal}`}
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <p className="font-headline-md text-xl text-on-surface font-normal">
+                          {config.finish}
+                        </p>
+                        <p className="font-body-sm text-xs text-outline mt-0.5">
+                          {config.metal} • {config.profile}
+                        </p>
+                      </motion.div>
+                    </AnimatePresence>
                   </div>
                 </div>
               </div>
@@ -239,9 +254,18 @@ export default function MaterialConfigurator() {
                   <span className="font-label-caps text-[10px] uppercase tracking-wider text-outline block mb-1">
                     Solar Reflectance (SRI)
                   </span>
-                  <span className="font-headline-lg text-2xl lg:text-3xl text-tertiary font-normal">
-                    {config.sri}
-                  </span>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={config.sri}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2 }}
+                      className="font-headline-lg text-2xl lg:text-3xl text-tertiary font-normal block"
+                    >
+                      {config.sri}
+                    </motion.span>
+                  </AnimatePresence>
                   <span className="font-body-sm text-[11px] text-outline block mt-1">
                     LEED Certified Base
                   </span>
@@ -250,9 +274,18 @@ export default function MaterialConfigurator() {
                   <span className="font-label-caps text-[10px] uppercase tracking-wider text-outline block mb-1">
                     Solar Reflectivity
                   </span>
-                  <span className="font-headline-lg text-2xl lg:text-3xl text-on-surface font-normal">
-                    {config.sr}
-                  </span>
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={config.sr}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2 }}
+                      className="font-headline-lg text-2xl lg:text-3xl text-on-surface font-normal block"
+                    >
+                      {config.sr}
+                    </motion.span>
+                  </AnimatePresence>
                   <span className="font-body-sm text-[11px] text-outline block mt-1">
                     Cool Roof Rated (CRRC)
                   </span>

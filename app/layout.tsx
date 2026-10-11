@@ -7,6 +7,7 @@ import { AiAssistantProvider } from '@/components/ai/AiAssistantContext';
 import AiChatDrawer from '@/components/ai/AiChatDrawer';
 import AiVoiceCallModal from '@/components/ai/AiVoiceCallModal';
 import AiFloatingTrigger from '@/components/ai/AiFloatingTrigger';
+import { ScrollProgress, PageTransition } from '@/components/animation/MotionWrappers';
 import { SITE_CONFIG } from '@/constants/data';
 import './globals.css';
 
@@ -62,7 +63,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-background text-on-surface antialiased selection:bg-tertiary-container selection:text-tertiary min-h-screen flex flex-col font-sans overflow-x-hidden">
         <AiAssistantProvider>
           <Header />
-          <main className="flex-1 w-full pt-20 bg-background">{children}</main>
+          <ScrollProgress />
+          <main className="flex-1 w-full pt-20 bg-background">
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
           <MobileStickyCta />
           <AiChatDrawer />
